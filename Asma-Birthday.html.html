@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Happy Birthday Asma</title>
+  
+  <!-- Premium Cinematic Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       GLOBAL DESIGN SYSTEM & LUXURY RESET
+       ========================================================================== */
+    :root {
+      --bg-dark: #050507;
+      --bg-charcoal: #0c0c10;
+      --gold-primary: #e6ca65;
+      --gold-deep: #b38b32;
+      --gold-light: #fef1b8;
+      --gold-accent: #d4af37;
+      --gold-glow: rgba(230, 202, 101, 0.45);
+      --warm-white: #f5f3ee;
+      --muted-gold: #9e8e6b;
+      --bezel-color: #1f1d1b;
+      --bezel-gold: #4a3e20;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      background-color: var(--bg-dark);
+      color: var(--warm-white);
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      position: fixed;
+    }
+
+    /* Ambient Cinematic Background Glow */
+    #ambient-background {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 45%, #18161d 0%, #0d0c11 50%, #050507 100%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 2s ease, background 2s ease;
+    }
+
+    /* Global Particle Canvas */
+    #particle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Confetti Canvas for Page 3 */
+    #celebration-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    /* Cinematic Stage Container */
+    #cinema-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Unified View Architecture */
+    .cinematic-page {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(1rem, 4vw, 2.5rem);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: scale(0.98);
+      z-index: 5;
+    }
+
+    .cinematic-page.active-page {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    /* Universal Responsive Button */
+    .lux-button {
+      background: linear-gradient(135deg, rgba(230, 202, 101, 0.12) 0%, rgba(179, 139, 50, 0.22) 100%);
+      border: 1px solid rgba(230, 202, 101, 0.5);
+      border-radius: 40px;
+      color: var(--warm-white);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+      font-weight: 600;
+      letter-spacing: clamp(2px, 0.4vw, 3.5px);
+      text-transform: uppercase;
+      padding: clamp(12px, 2.6vw, 16px) clamp(28px, 6vw, 44px);
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(230, 202, 101, 0.15), inset 0 0 12px rgba(230, 202, 101, 0.1);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      outline: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      max-width: 90vw;
+      white-space: nowrap;
+    }
+
+    .lux-button:hover, .lux-button:active {
+      background: linear-gradient(135deg, rgba(230, 202, 101, 0.28) 0%, rgba(179, 139, 50, 0.4) 100%);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 32px rgba(230, 202, 101, 0.4), inset 0 0 16px rgba(230, 202, 101, 0.25);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Decorative Gold Divider */
+    .lux-divider {
+      color: var(--gold-accent);
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      letter-spacing: clamp(4px, 1.2vw, 8px);
+      opacity: 0.85;
+      text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+      margin: clamp(10px, 2vh, 18px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       PAGE 1 — CINEMATIC BIRTHDAY LANDING
+       ========================================================================== */
+    #page-1 {
+      text-align: center;
+    }
+
+    .p1-pre-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.68rem, 2vw, 0.85rem);
+      letter-spacing: clamp(3px, 0.8vw, 6px);
+      color: var(--muted-gold);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1s ease 1s, transform 1s ease 1s;
+    }
+
+    .p1-main-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 6.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: clamp(4px, 1.2vw, 10px);
+      color: var(--warm-white);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 35px rgba(230, 202, 101, 0.25);
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 1.2s ease 1.5s, transform 1.2s ease 1.5s;
+    }
+
+    .p1-name-wrapper {
+      position: relative;
+      display: inline-block;
+      margin: clamp(8px, 1.5vh, 16px) 0;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 1.4s ease 2.2s, transform 1.4s ease 2.2s;
+    }
+
+    .p1-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 11vw, 6.2rem);
+      font-weight: 800;
+      letter-spacing: clamp(8px, 2.5vw, 22px);
+      background: linear-gradient(135deg, #ffffff 0%, #fae8a8 30%, #e6ca65 60%, #b8913c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(230, 202, 101, 0.45));
+      position: relative;
+    }
+
+    /* Subtle Gold Light Sweep on ASMA */
+    .p1-name::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      transform: skewX(-25deg);
+      animation: goldShineSweep 5s infinite 3s;
+      pointer-events: none;
+    }
+
+    @keyframes goldShineSweep {
+      0% { left: -100%; }
+      30%, 100% { left: 160%; }
+    }
+
+    .p1-divider-wrapper {
+      opacity: 0;
+      transition: opacity 1s ease 3s;
+    }
+
+    .p1-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 3.2vw, 1.6rem);
+      font-style: italic;
+      color: rgba(245, 243, 238, 0.85);
+      letter-spacing: 1px;
+      margin-bottom: clamp(20px, 4vh, 35px);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1s ease 3.4s, transform 1s ease 3.4s;
+    }
+
+    .p1-button-wrapper {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 1s ease 4.2s, transform 1s ease 4.2s;
+    }
+
+    .p1-footnote {
+      font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+      letter-spacing: 2px;
+      color: var(--muted-gold);
+      text-transform: uppercase;
+      margin-top: 14px;
+      opacity: 0;
+      transition: opacity 1s ease 4.7s;
+    }
+
+    /* Trigger Page 1 Reveal Sequence when Active */
+    .cinematic-page.active-page .p1-pre-title,
+    .cinematic-page.active-page .p1-main-title,
+    .cinematic-page.active-page .p1-name-wrapper,
+    .cinematic-page.active-page .p1-divider-wrapper,
+    .cinematic-page.active-page .p1-subtitle,
+    .cinematic-page.active-page .p1-button-wrapper,
+    .cinematic-page.active-page .p1-footnote {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       PAGE 2 — EXACT MAGIC MIRROR FRAME & SWITCH
+       ========================================================================== */
+    #page-2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(12px, 2.5vh, 22px);
+      height: 100%;
+      max-height: 100vh;
+      box-sizing: border-box;
+      padding: clamp(12px, 3vh, 24px) 16px;
+    }
+
+    /* Responsive Frame Container Fitting True Photo Aspect Ratio */
+    .mirror-outer-housing {
+      position: relative;
+      width: clamp(260px, 78vw, 370px);
+      height: clamp(370px, 62vh, 510px);
+      border-radius: 28px;
+      padding: 9px;
+      background: radial-gradient(circle at 50% 0%, #2f2b23, #151416 75%, #0d0c0e 100%);
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(230, 202, 101, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.9);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Luxury Bezel Edge */
+    .mirror-bezel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #08080a;
+      border: 1px solid rgba(230, 202, 101, 0.25);
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Golden LED Border glow */
+    .mirror-outer-housing.illuminated {
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(230, 202, 101, 0.45),
+        0 0 75px rgba(212, 175, 55, 0.2),
+        0 0 0 1.5px rgba(254, 241, 184, 0.8),
+        inset 0 0 15px rgba(230, 202, 101, 0.3);
+    }
+
+    /* Traveling Golden LED Beam */
+    .traveling-beam {
+      position: absolute;
+      inset: -2px;
+      border-radius: 28px;
+      pointer-events: none;
+      z-index: 12;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(230, 202, 101, 0.95) 45deg,
+        #ffffff 50deg,
+        rgba(230, 202, 101, 0.95) 55deg,
+        transparent 90deg,
+        transparent 360deg
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 3px;
+    }
+
+    .mirror-outer-housing.illuminated .traveling-beam {
+      opacity: 1;
+      animation: rotateTravelBeam 3.6s linear infinite;
+    }
+
+    @keyframes rotateTravelBeam {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Photo Frame Window (OBJECT-FIT CONTAIN) */
+    .mirror-viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background-color: #060608;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .birthday-portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* NON-NEGOTIABLE: NEVER CROP OR STRETCH */
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 1.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 2;
+    }
+
+    .mirror-outer-housing.illuminated .birthday-portrait {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Dark Smoked Mirror Glass Overlay */
+    .smoked-glass-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 45% 40%, rgba(26, 26, 34, 0.94), rgba(10, 10, 13, 0.99));
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 5;
+      transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Mirror Diagonal Specular Glare */
+    .smoked-glass-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .mirror-outer-housing.illuminated .smoked-glass-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Ambient Warm Glass Bloom */
+    .glass-bloom {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(230, 202, 101, 0.15) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .mirror-outer-housing.illuminated .glass-bloom {
+      opacity: 1;
+    }
+
+    /* Smoked Glass Text Cue */
+    .mirror-cue-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 2vw, 0.82rem);
+      letter-spacing: 4px;
+      color: rgba(230, 202, 101, 0.7);
+      text-transform: uppercase;
+      z-index: 7;
+      text-shadow: 0 0 10px rgba(230, 202, 101, 0.3);
+    }
+
+    /* Physical Toggle Switch Unit */
+    .switch-dock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      z-index: 15;
+    }
+
+    .switch-label {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.62rem, 1.8vw, 0.75rem);
+      letter-spacing: 3px;
+      color: var(--muted-gold);
+      text-transform: uppercase;
+      transition: color 0.4s ease;
+    }
+
+    .switch-dock.active .switch-label {
+      color: var(--gold-light);
+      text-shadow: 0 0 10px rgba(230, 202, 101, 0.6);
+    }
+
+    /* Mechanical Switch Body */
+    .physical-toggle {
+      position: relative;
+      width: 72px;
+      height: 36px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #111012, #211e1c);
+      border: 1px solid rgba(230, 202, 101, 0.35);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), 0 3px 8px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      transition: all 0.4s ease;
+    }
+
+    .toggle-knob {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e6ca65, #96752c);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      transform: translateX(0px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.35s ease;
+      position: relative;
+    }
+
+    .toggle-knob::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff8d6;
+      box-shadow: 0 0 4px #ffd700;
+    }
+
+    .physical-toggle.flipped {
+      border-color: var(--gold-light);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 16px rgba(230, 202, 101, 0.4);
+    }
+
+    .physical-toggle.flipped .toggle-knob {
+      transform: translateX(36px);
+      background: linear-gradient(135deg, #fff3b3, #e6ca65);
+      box-shadow: 0 0 12px rgba(230, 202, 101, 0.8);
+    }
+
+    /* Page 2 Continue Button Wrapper */
+    .p2-continue-wrapper {
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      z-index: 20;
+    }
+
+    .p2-continue-wrapper.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       PAGE 3 — BIRTHDAY MESSAGE & WORD-BY-WORD ANIMATION
+       ========================================================================== */
+    #page-3 {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(1rem, 4vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .p3-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 2.4vw, 1.25rem);
+      letter-spacing: clamp(3px, 0.8vw, 6px);
+      color: var(--gold-light);
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+
+    /* Word-by-word paragraph container */
+    .message-container {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 3.4vw, 1.65rem);
+      line-height: clamp(1.6, 3.8vw, 1.85);
+      color: #faf7f2;
+      max-width: 780px;
+      margin: clamp(12px, 2.5vh, 24px) auto;
+      padding: 0 clamp(8px, 2vw, 16px);
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      min-height: 180px;
+    }
+
+    /* Each Word Span Animation */
+    .msg-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      margin-right: 0.28em;
+      white-space: pre;
+    }
+
+    .msg-word.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .msg-word.highlight-word {
+      color: var(--gold-light);
+      text-shadow: 0 0 14px rgba(230, 202, 101, 0.4);
+      font-weight: 600;
+    }
+
+    .p3-continue-wrapper {
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      margin-top: clamp(10px, 2vh, 18px);
+    }
+
+    .p3-continue-wrapper.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       PAGE 4 — FINAL ENDING
+       ========================================================================== */
+    #page-4 {
+      text-align: center;
+      background: transparent;
+      transition: opacity 2s ease;
+    }
+
+    .final-closing-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 7.5vw, 4.4rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: clamp(2px, 0.6vw, 5px);
+      color: var(--warm-white);
+      text-shadow: 0 0 25px rgba(230, 202, 101, 0.45);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 1.8s ease, transform 1.8s ease;
+    }
+
+    .final-closing-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .final-closing-text.fade-out {
+      opacity: 0 !important;
+      transform: translateY(-8px) !important;
+      transition: opacity 3.5s ease, transform 3.5s ease !important;
+    }
+
+    /* Full dark overlay for final fading */
+    #final-blackout-curtain {
+      position: absolute;
+      inset: 0;
+      background-color: #000000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: opacity 4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #final-blackout-curtain.blackout {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Backing -->
+  <div id="ambient-background"></div>
+
+  <!-- Subtle Champagne Particle Canvas (Pages 1-4) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Celebration Particles / Confetti Canvas (Page 3) -->
+  <canvas id="celebration-canvas"></canvas>
+
+  <!-- Final Darkening Curtain -->
+  <div id="final-blackout-curtain"></div>
+
+  <!-- Cinematic Stage -->
+  <main id="cinema-stage">
+
+    <!-- PAGE 1: CINEMATIC BIRTHDAY OPENING -->
+    <section id="page-1" class="cinematic-page active-page" aria-label="Welcome">
+      <p class="p1-pre-title">A LITTLE MOMENT FOR ASMA</p>
+      <h1 class="p1-main-title">HAPPY BIRTHDAY</h1>
+      
+      <div class="p1-name-wrapper">
+        <div class="p1-name">ASMA</div>
+      </div>
+
+      <div class="p1-divider-wrapper">
+        <div class="lux-divider">────── ✦ ──────</div>
+      </div>
+
+      <p class="p1-subtitle">A special moment awaits.</p>
+
+      <div class="p1-button-wrapper">
+        <button id="btn-enter-magic" class="lux-button" type="button">
+          ENTER THE MAGIC →
+        </button>
+      </div>
+
+      <p class="p1-footnote">Your birthday experience awaits.</p>
+    </section>
+
+    <!-- PAGE 2: EXACT MAGIC MIRROR WITH TOGGLE SWITCH -->
+    <section id="page-2" class="cinematic-page" aria-label="Magic Mirror">
+      <!-- Luxury Mirror Housing -->
+      <div class="mirror-outer-housing" id="mirrorHousing">
+        <div class="traveling-beam"></div>
+        <div class="mirror-bezel">
+          <div class="mirror-viewport">
+            <!-- Exact Provided Portrait (Contained, Never Cropped) -->
+            <img 
+              id="mirrorPhoto" 
+              class="birthday-portrait" 
+              src="https://github.com/markthomas7878078-png/Wishing-files/blob/main/137730.png?raw=true" 
+              alt="Asma Birthday Portrait"
+              loading="eager"
+            />
+            <!-- Dark Smoked Mirror Glass -->
+            <div class="smoked-glass-overlay">
+              <span class="mirror-cue-text">THE MIRROR</span>
+            </div>
+            <!-- Golden Glass Bloom -->
+            <div class="glass-bloom"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Luxury Toggle Switch -->
+      <div class="switch-dock" id="switchDock">
+        <div class="physical-toggle" id="magicToggle" role="button" tabindex="0" aria-label="Turn on mirror light">
+          <div class="toggle-knob"></div>
+        </div>
+        <span class="switch-label" id="switchLabel">Turn on</span>
+      </div>
+
+      <!-- Page 2 Continue Button (Shown after mirror reveal) -->
+      <div class="p2-continue-wrapper" id="p2ContinueWrapper">
+        <button id="btn-page2-continue" class="lux-button" type="button">
+          CONTINUE
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: BIRTHDAY MESSAGE & CELEBRATION -->
+    <section id="page-3" class="cinematic-page" aria-label="Birthday Message">
+      <h2 class="p3-title">A MESSAGE FOR ASMA</h2>
+      <div class="lux-divider">────── ✦ ──────</div>
+
+      <div class="message-container" id="wordMessageContainer">
+        <!-- Words populated via JavaScript for precise sequential reveal -->
+      </div>
+
+      <div class="p3-continue-wrapper" id="p3ContinueWrapper">
+        <button id="btn-page3-continue" class="lux-button" type="button">
+          CONTINUE
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 4: FINAL CINEMATIC ENDING -->
+    <section id="page-4" class="cinematic-page" aria-label="Farewell">
+      <h1 class="final-closing-text" id="finalText">See you next year</h1>
+    </section>
+
+  </main>
+
+  <script>
+    /* ==========================================================================
+       AUDIO ARCHITECTURE (NO MUSIC BUTTONS / FULLY AUTOMATIC)
+       ========================================================================== */
+    const SONG_1_URL = "https://raw.githubusercontent.com/markthomas7878078-png/Wishing-files/main/Aww%20tera%20happy%20birthday%20%F0%9F%8E%81%F0%9F%8E%89.%23whatsappstatus%20%23shorts.mp3";
+    const SONG_2_URL = "https://raw.githubusercontent.com/markthomas7878078-png/Wishing-files/main/%F0%9F%A5%80Happy%20Birthday%20Wishes%20%F0%9F%A5%80%20Happy%20Birthday%20whatsapp%20status%20%F0%9F%8E%89%20happy%20birthday%20status%20%F0%9F%A5%B3%20birthday%20status%20%F0%9F%8E%82.mp3";
+    // Cinematic, calm emotional ending soundtrack for Page 4
+    const SONG_3_URL = "https://cdn.pixabay.com/download/audio/2022/05/16/audio_c897f28b6a.mp3?filename=cinematic-piano-ambient-112189.mp3";
+
+    const audioTrack1 = new Audio(SONG_1_URL);
+    const audioTrack2 = new Audio(SONG_2_URL);
+    const audioTrack3 = new Audio(SONG_3_URL);
+
+    audioTrack1.preload = "auto";
+    audioTrack2.preload = "auto";
+    audioTrack3.preload = "auto";
+
+    audioTrack1.loop = true;
+    audioTrack2.loop = true;
+    audioTrack3.loop = false;
+
+    // Automatic playback helper with interaction insurance (without any audio UI)
+    function attemptPlay(audioElement) {
+      if (!audioElement) return;
+      const playPromise = audioElement.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser policy blocks autoplay initially, bind silent auto-unlock on first tap
+          const unlock = () => {
+            audioElement.play().catch(() => {});
+            window.removeEventListener('click', unlock);
+            window.removeEventListener('touchstart', unlock);
+          };
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('touchstart', unlock, { once: true });
+        });
+      }
+    }
+
+    function stopAndReset(audioElement) {
+      if (!audioElement) return;
+      try {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      } catch (e) {}
+    }
+
+    function fadeAudioOut(audioElement, durationMs = 2500) {
+      if (!audioElement || audioElement.paused) return;
+      const startVolume = audioElement.volume;
+      const intervalTime = 50;
+      const step = startVolume / (durationMs / intervalTime);
+      const fadeInterval = setInterval(() => {
+        if (audioElement.volume > step) {
+          audioElement.volume -= step;
+        } else {
+          audioElement.volume = 0;
+          audioElement.pause();
+          clearInterval(fadeInterval);
+        }
+      }, intervalTime);
+    }
+
+    // Synthesized Mechanical Click Sound for the physical mirror toggle switch
+    function playMechanicalSwitchClick() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.08);
+      } catch (e) {
+        // Fallback silent
+      }
+    }
+
+    // Try starting Song 1 immediately when page opens
+    window.addEventListener('DOMContentLoaded', () => {
+      attemptPlay(audioTrack1);
+    });
+
+    /* ==========================================================================
+       SUBTLE CHAMPAGNE GOLD PARTICLES (CANVAS)
+       ========================================================================== */
+    const particleCanvas = document.getElementById('particle-canvas');
+    const pCtx = particleCanvas.getContext('2d');
+    let pWidth, pHeight;
+    let particles = [];
+    const PARTICLE_COUNT = 48;
+    let particlesActive = true;
+
+    function resizeParticleCanvas() {
+      pWidth = particleCanvas.width = window.innerWidth;
+      pHeight = particleCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeParticleCanvas);
+    resizeParticleCanvas();
+
+    class GoldDustParticle {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * pWidth;
+        this.y = initial ? Math.random() * pHeight : pHeight + 10;
+        this.size = Math.random() * 1.8 + 0.6;
+        this.speedY = Math.random() * 0.45 + 0.15;
+        this.speedX = (Math.random() - 0.5) * 0.25;
+        this.alpha = Math.random() * 0.5 + 0.2;
+        this.pulseSpeed = Math.random() * 0.02 + 0.005;
+        this.pulse = Math.random() * Math.PI;
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.pulse += this.pulseSpeed;
+        if (this.y < -15 || this.x < -20 || this.x > pWidth + 20) {
+          this.reset(false);
+        }
+      }
+      draw() {
+        const currentAlpha = Math.max(0, this.alpha + Math.sin(this.pulse) * 0.2);
+        pCtx.save();
+        pCtx.beginPath();
+        pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        pCtx.fillStyle = `rgba(230, 202, 101, ${currentAlpha})`;
+        pCtx.shadowBlur = 8;
+        pCtx.shadowColor = 'rgba(230, 202, 101, 0.6)';
+        pCtx.fill();
+        pCtx.restore();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new GoldDustParticle());
+    }
+
+    function animateParticles() {
+      if (particlesActive) {
+        pCtx.clearRect(0, 0, pWidth, pHeight);
+        for (let p of particles) {
+          p.update();
+          p.draw();
+        }
+      } else {
+        pCtx.clearRect(0, 0, pWidth, pHeight);
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* ==========================================================================
+       PAGE 3 CELEBRATORY PARTICLES & CONFETTI (Strictly Champagne Gold / White)
+       ========================================================================== */
+    const celCanvas = document.getElementById('celebration-canvas');
+    const cCtx = celCanvas.getContext('2d');
+    let cWidth, cHeight;
+    let celebrationItems = [];
+    let celebrationRunning = false;
+
+    function resizeCelebrationCanvas() {
+      cWidth = celCanvas.width = window.innerWidth;
+      cHeight = celCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCelebrationCanvas);
+    resizeCelebrationCanvas();
+
+    class ConfettiPiece {
+      constructor(originX, originY, angle, velocity, type) {
+        this.x = originX;
+        this.y = originY;
+        this.type = type; // 'confetti' or 'sparkle'
+        this.vx = Math.cos(angle) * velocity;
+        this.vy = Math.sin(angle) * velocity;
+        this.gravity = 0.22;
+        this.friction = 0.985;
+        this.rotation = Math.random() * 360;
+        this.rotSpeed = (Math.random() - 0.5) * 8;
+        this.size = type === 'confetti' ? Math.random() * 8 + 5 : Math.random() * 3.5 + 1.5;
+        this.colors = ['#fef1b8', '#e6ca65', '#d4af37', '#ffffff', '#b38b32'];
+        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+        this.alpha = 1;
+        this.decay = Math.random() * 0.005 + 0.003;
+      }
+      update() {
+        this.vx *= this.friction;
+        this.vy *= this.friction;
+        this.vy += this.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotSpeed;
+        this.alpha = Math.max(0, this.alpha - this.decay);
+      }
+      draw() {
+        cCtx.save();
+        cCtx.globalAlpha = this.alpha;
+        cCtx.translate(this.x, this.y);
+        cCtx.rotate((this.rotation * Math.PI) / 180);
+        cCtx.fillStyle = this.color;
+        cCtx.shadowBlur = 6;
+        cCtx.shadowColor = 'rgba(230, 202, 101, 0.5)';
+
+        if (this.type === 'confetti') {
+          cCtx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+        } else {
+          // Sparkle star / dot
+          cCtx.beginPath();
+          cCtx.arc(0, 0, this.size, 0, Math.PI * 2);
+          cCtx.fill();
+        }
+        cCtx.restore();
+      }
+    }
+
+    function triggerCelebrationCannons() {
+      celCanvas.style.opacity = '1';
+      celebrationRunning = true;
+
+      // Lower Left Cannon
+      for (let i = 0; i < 90; i++) {
+        const angle = -Math.PI / 4 + (Math.random() - 0.5) * 0.65;
+        const speed = Math.random() * 15 + 8;
+        celebrationItems.push(new ConfettiPiece(40, cHeight - 40, angle, speed, Math.random() > 0.4 ? 'confetti' : 'sparkle'));
+      }
+      // Lower Right Cannon
+      for (let i = 0; i < 90; i++) {
+        const angle = -Math.PI * 0.75 + (Math.random() - 0.5) * 0.65;
+        const speed = Math.random() * 15 + 8;
+        celebrationItems.push(new ConfettiPiece(cWidth - 40, cHeight - 40, angle, speed, Math.random() > 0.4 ? 'confetti' : 'sparkle'));
+      }
+      // Top falling golden drift
+      for (let i = 0; i < 70; i++) {
+        const angle = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+        const speed = Math.random() * 4 + 2;
+        celebrationItems.push(new ConfettiPiece(Math.random() * cWidth, -20, angle, speed, 'confetti'));
+      }
+    }
+
+    function animateCelebration() {
+      if (celebrationRunning) {
+        cCtx.clearRect(0, 0, cWidth, cHeight);
+        for (let i = celebrationItems.length - 1; i >= 0; i--) {
+          const item = celebrationItems[i];
+          item.update();
+          item.draw();
+          if (item.alpha <= 0 || item.y > cHeight + 40) {
+            celebrationItems.splice(i, 1);
+          }
+        }
+      }
+      requestAnimationFrame(animateCelebration);
+    }
+    animateCelebration();
+
+    /* ==========================================================================
+       PAGE NAVIGATION & TRANSITION SEQUENCER
+       ========================================================================== */
+    const page1 = document.getElementById('page-1');
+    const page2 = document.getElementById('page-2');
+    const page3 = document.getElementById('page-3');
+    const page4 = document.getElementById('page-4');
+
+    function switchPage(fromPage, toPage, callback) {
+      fromPage.classList.remove('active-page');
+      setTimeout(() => {
+        toPage.classList.add('active-page');
+        if (callback) callback();
+      }, 700);
+    }
+
+    /* --------------------------------------------------------------------------
+       TRANSITION: PAGE 1 → PAGE 2
+       -------------------------------------------------------------------------- */
+    const btnEnterMagic = document.getElementById('btn-enter-magic');
+
+    btnEnterMagic.addEventListener('click', () => {
+      // Glow and transition
+      btnEnterMagic.style.boxShadow = '0 0 45px rgba(230, 202, 101, 0.9)';
+      
+      // Stop Song 1, Start Song 2
+      stopAndReset(audioTrack1);
+      attemptPlay(audioTrack2);
+
+      setTimeout(() => {
+        switchPage(page1, page2);
+      }, 500);
+    });
+
+    /* --------------------------------------------------------------------------
+       PAGE 2: MAGIC MIRROR TOGGLE INTERACTION
+       -------------------------------------------------------------------------- */
+    const magicToggle = document.getElementById('magicToggle');
+    const switchDock = document.getElementById('switchDock');
+    const switchLabel = document.getElementById('switchLabel');
+    const mirrorHousing = document.getElementById('mirrorHousing');
+    const p2ContinueWrapper = document.getElementById('p2ContinueWrapper');
+    let mirrorRevealed = false;
+
+    magicToggle.addEventListener('click', toggleMirrorLight);
+
+    function toggleMirrorLight() {
+      if (mirrorRevealed) return; // Trigger once smoothly
+      mirrorRevealed = true;
+
+      // 1. Mechanical switch flip & sound
+      playMechanicalSwitchClick();
+      magicToggle.classList.add('flipped');
+      switchDock.classList.add('active');
+      switchLabel.textContent = "Illuminated";
+
+      // 2. LED illumination & traveling light
+      mirrorHousing.classList.add('illuminated');
+
+      // 3. Reveal continue button only after mirror animation settles
+      setTimeout(() => {
+        p2ContinueWrapper.classList.add('revealed');
+      }, 1600);
+    }
+
+    /* --------------------------------------------------------------------------
+       TRANSITION: PAGE 2 → PAGE 3
+       -------------------------------------------------------------------------- */
+    const btnPage2Continue = document.getElementById('btn-page2-continue');
+
+    btnPage2Continue.addEventListener('click', () => {
+      // Song 2 continues uninterrupted (NO RESTART)
+      switchPage(page2, page3, () => {
+        startPage3MessageAnimation();
+      });
+    });
+
+    /* --------------------------------------------------------------------------
+       PAGE 3: WORD-BY-WORD MESSAGE POPULATION & ANIMATION
+       -------------------------------------------------------------------------- */
+    const exactMessageText = "Happy Birthday, Asma! 🎂✨ May this special day bring you endless happiness, beautiful memories, and countless reasons to smile. May the year ahead be filled with success, peace, good health, exciting opportunities, and moments that make you truly proud and happy. I hope every dream you carry in your heart gets a chance to become reality, and that every new chapter of your life brings something better than the one before. Keep smiling, keep shining, and always remember how special and wonderful you are. Wishing you a truly amazing birthday and a fantastic year ahead. ✨";
+
+    const wordContainer = document.getElementById('wordMessageContainer');
+    const p3ContinueWrapper = document.getElementById('p3ContinueWrapper');
+    let p3AnimationStarted = false;
+
+    function buildWordSpans() {
+      wordContainer.innerHTML = '';
+      const words = exactMessageText.split(' ');
+      words.forEach((word) => {
+        const span = document.createElement('span');
+        span.className = 'msg-word';
+        if (word.includes('Asma') || word.includes('Birthday')) {
+          span.classList.add('highlight-word');
+        }
+        span.textContent = word + ' ';
+        wordContainer.appendChild(span);
+      });
+    }
+    buildWordSpans();
+
+    function startPage3MessageAnimation() {
+      if (p3AnimationStarted) return;
+      p3AnimationStarted = true;
+
+      const spans = wordContainer.querySelectorAll('.msg-word');
+      const intervalDelay = 110; // smooth readable pace
+
+      spans.forEach((span, index) => {
+        setTimeout(() => {
+          span.classList.add('revealed');
+
+          // Check if this was the last word
+          if (index === spans.length - 1) {
+            // Wait 0.8s, then trigger celebration poppers
+            setTimeout(() => {
+              triggerCelebrationCannons();
+              // Display CONTINUE button
+              setTimeout(() => {
+                p3ContinueWrapper.classList.add('revealed');
+              }, 1200);
+            }, 800);
+          }
+        }, index * intervalDelay);
+      });
+    }
+
+    /* --------------------------------------------------------------------------
+       TRANSITION: PAGE 3 → PAGE 4
+       -------------------------------------------------------------------------- */
+    const btnPage3Continue = document.getElementById('btn-page3-continue');
+
+    btnPage3Continue.addEventListener('click', () => {
+      // 1. Stop Song 2
+      stopAndReset(audioTrack2);
+      
+      // 2. Start Song 3
+      attemptPlay(audioTrack3);
+
+      // 3. Transition to Page 4
+      switchPage(page3, page4, () => {
+        executePage4EndingSequence();
+      });
+    });
+
+    /* --------------------------------------------------------------------------
+       PAGE 4: FINAL CINEMATIC ENDING SEQUENCE & SLOW DARKENING
+       -------------------------------------------------------------------------- */
+    const finalText = document.getElementById('finalText');
+    const blackoutCurtain = document.getElementById('final-blackout-curtain');
+
+    function executePage4EndingSequence() {
+      // Timeline:
+      // 0–1s: Deep black screen settles
+      // 1–2s: Ambient gold glow settles
+      // 2–3s: "See you next year" slowly fades in
+      setTimeout(() => {
+        finalText.classList.add('visible');
+      }, 1500);
+
+      // 3–6.5s: Text remains gently illuminated with subtle gold floating dust
+      // 6.5s–10s: Slowly fade text, extinguish particles, fade Song 3, and fade into PURE BLACK
+      setTimeout(() => {
+        // Text slowly fades
+        finalText.classList.add('fade-out');
+
+        // Blackout curtain darkens entire screen
+        blackoutCurtain.classList.add('blackout');
+
+        // Gently fade out Song 3 audio
+        fadeAudioOut(audioTrack3, 3500);
+
+        // Turn off particle loop
+        setTimeout(() => {
+          particlesActive = false;
+        }, 3500);
+
+      }, 6500);
+    }
+  </script>
+</body>
+</html>
